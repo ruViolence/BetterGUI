@@ -192,6 +192,7 @@ public abstract class BaseInventoryMenu<B extends ButtonMap> extends BaseMenu {
   protected boolean createChecked(Player player, String[] args, boolean bypass) {
     UUID uuid = player.getUniqueId();
     refreshButtonMapOnCreate(buttonMap, uuid);
+    guiHolder.getDisplay(uuid).filter(display -> display.getHolder() == this.guiHolder).ifPresent(display -> player.closeInventory());
     guiHolder.createDisplay(uuid).open();
     return true;
   }
